@@ -1,0 +1,161 @@
+package com.cloudinary.cloudinarysampleapp.main.delivery.optimization;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
+import com.cloudinary.Transformation;
+import com.cloudinary.android.CloudinaryRequest;
+import com.cloudinary.android.MediaManager;
+import com.cloudinary.cloudinarysampleapp.databinding.OptimizationFragmentBinding;
+import com.cloudinary.cloudinarysampleapp.helpers.Utils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+
+public class OptimizationFragment extends Fragment {
+
+    OptimizationFragmentBinding binding;
+
+    @Override
+    public View onCreateView(
+            @NonNull LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState
+    ) {
+        binding = OptimizationFragmentBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getImages();
+    }
+
+    private void getImages() {
+        setOriginalImageView();
+        setOptimizedImageView();
+    }
+
+    private void setOptimizedImageView() {
+        ImageView optimizedImageView = binding.optimizationOptimizedImageview;
+
+        String url = MediaManager.get().url().transformation(new Transformation().crop("scale").width(1000).fetchFormat("avif").quality("auto").dpr("auto")).generate("Demo%20app%20content/optimization_optimized");
+
+        Glide.with(optimizedImageView)
+                .asBitmap()
+                .load(new CloudinaryRequest.Builder("Demo%20app%20content/optimization_optimized")
+                        .transformation(new Transformation().crop("scale").width(500).fetchFormat("avif").quality("auto").dpr("auto"))
+                        .build())
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap bitmap, Transition<? super Bitmap> transition) {
+                        int width = bitmap.getWidth();
+                        int height = bitmap.getHeight();
+
+                        // Set dimensions text
+                        binding.optimizationOptimizedDimensionsTextview.setText(width + "x" + height);
+
+                        // Set format text (assuming AVIF format)
+                        binding.optimizationOptimizedFormatTextview.setText("AVIF");
+
+                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream); // Adjust compression quality as needed
+
+                        byte[] byteArray = outputStream.toByteArray();
+
+// Calculate size in KB
+                        long fileSizeInBytes = byteArray.length;
+                        long fileSizeInKB = fileSizeInBytes / 1024;
+
+// Set size text
+                        binding.optimizationOptimizedSizeTextview.setText(fileSizeInKB + " KB");
+                        optimizedImageView.setImageBitmap(bitmap);
+                    }
+                });
+    }
+
+    private void setOriginalImageView() {
+        ImageView originalImageView = binding.optimizationOriginalImageview;
+
+        Glide.with(originalImageView)
+                .asBitmap()
+                .load(new CloudinaryRequest.Builder("Demo%20app%20content/optimization_original")
+                        .build())
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap bitmap, Transition<? super Bitmap> transition) {
+                        int width = bitmap.getWidth();
+                        int height = bitmap.getHeight();
+
+                        // Set dimensions text
+                        binding.optimizationOriginalDimensionsTextview.setText(width + "x" + height);
+
+                        // Set format text (assuming AVIF format)
+                        binding.optimizationOriginalFormatTextview.setText("JPG");
+
+                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream); // Adjust compression quality as needed
+
+                        byte[] byteArray = outputStream.toByteArray();
+
+// Calculate size in KB
+                        long fileSizeInBytes = byteArray.length;
+                        long fileSizeInKB = fileSizeInBytes / 1024;
+
+// Set size text
+                        binding.optimizationOriginalSizeTextview.setText(fileSizeInKB + " KB");
+                        originalImageView.setImageBitmap(bitmap);
+                    }
+                });
+    }
+
+    private String getImageFormat(String imageUrl) {
+        // Extract format from image URL
+        int index = imageUrl.lastIndexOf('.');
+        if (index > 0) {
+            return imageUrl.substring(index + 1).toUpperCase();
+        }
+        return "";
+    }
+
+    public Bitmap drawableToBitmap (Drawable drawable) {
+        Bitmap bitmap = null;
+
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if(bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+}
