@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudinary.cloudinarysampleapp.databinding.TransformationFragmentBinding;
+import com.cloudinary.cloudinarysampleapp.main.delivery.background.BackgroundNormalizingFragment;
+import com.cloudinary.cloudinarysampleapp.main.delivery.color.ColorAlternationFragment;
+import com.cloudinary.cloudinarysampleapp.main.delivery.localization.LocalizationFragment;
 import com.cloudinary.cloudinarysampleapp.main.delivery.transform.OnTransformationItemSelectedListener;
 
 public class TransformationFragment extends Fragment implements OnTransformationItemSelectedListener {
@@ -49,6 +52,15 @@ public class TransformationFragment extends Fragment implements OnTransformation
             case SmartCropping:
                 fragment = new SmartCroppingFragment();
                 break;
+            case LocalizationAndBranding:
+                fragment = new LocalizationFragment();
+                break;
+            case BackgroundNormalizing:
+                fragment = new BackgroundNormalizingFragment();
+                break;
+            case ColorAlternation:
+                fragment = new ColorAlternationFragment();
+                break;
         }
         if (fragment != null) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -60,7 +72,24 @@ public class TransformationFragment extends Fragment implements OnTransformation
 
     @Override
     public void onTransformationItemSelected(int position) {
+        switch(position) {
+            case 0:
+                setFragment(TransformationType.SmartCropping);
+                break;
+            case 1:
+                setFragment(TransformationType.LocalizationAndBranding);
+                break;
+            case 2:
+                setFragment(TransformationType.BackgroundNormalizing);
+                break;
+            case 3:
+                setFragment(TransformationType.ColorAlternation);
+                break;
+            default:
+                setFragment(TransformationType.SmartCropping);
+                break;
 
+        }
     }
 }
 
