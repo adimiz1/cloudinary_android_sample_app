@@ -14,13 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudinary.cloudinarysampleapp.databinding.TransformationFragmentBinding;
 import com.cloudinary.cloudinarysampleapp.main.delivery.background.BackgroundNormalizingFragment;
-import com.cloudinary.cloudinarysampleapp.main.delivery.color.ColorAlternationFragment;
-import com.cloudinary.cloudinarysampleapp.main.delivery.localization.LocalizationFragment;
+import com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.color.ColorAlternationFragment;
+import com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.localization.LocalizationFragment;
 import com.cloudinary.cloudinarysampleapp.main.delivery.transform.OnTransformationItemSelectedListener;
+import com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.smart_cropping.SmartCroppingFragment;
 
 public class TransformationFragment extends Fragment implements OnTransformationItemSelectedListener {
 
     TransformationFragmentBinding binding;
+
+    TransformationType type = TransformationType.SmartCropping;
+    private int selectedItemPosition;
 
     @Override
     public View onCreateView(
@@ -34,7 +38,7 @@ public class TransformationFragment extends Fragment implements OnTransformation
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setFragment(TransformationType.SmartCropping);
+        setFragment(type);
         setRecycleView();
     }
 
@@ -43,6 +47,7 @@ public class TransformationFragment extends Fragment implements OnTransformation
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         TransformationAdapter adapter = new TransformationAdapter(getActivity(), this);
+        adapter.setSelectedItemPosition(selectedItemPosition);
         recyclerView.setAdapter(adapter);
     }
 
@@ -87,6 +92,28 @@ public class TransformationFragment extends Fragment implements OnTransformation
                 break;
             default:
                 setFragment(TransformationType.SmartCropping);
+                break;
+
+        }
+    }
+
+    public void setPosition(int selectedItemPosition) {
+        this.selectedItemPosition = selectedItemPosition;
+        switch(selectedItemPosition) {
+            case 0:
+                type = TransformationType.SmartCropping;
+                break;
+            case 1:
+                type = TransformationType.LocalizationAndBranding;
+                break;
+            case 2:
+                type = TransformationType.BackgroundNormalizing;
+                break;
+            case 3:
+                type = TransformationType.ColorAlternation;
+                break;
+            default:
+                type = TransformationType.SmartCropping;
                 break;
 
         }

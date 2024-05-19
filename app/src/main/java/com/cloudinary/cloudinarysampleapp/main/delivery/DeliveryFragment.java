@@ -77,6 +77,7 @@ public class DeliveryFragment extends Fragment implements OnTransformationItemSe
     public void onTransformationItemSelected(int position) {
         Intent intent = new Intent(getActivity(), BaseActivity.class);
         intent.putExtra(BaseActivity.EXTRA_ACTIVITY_TYPE, BaseActivityType.Transformation.ordinal());
+        intent.putExtra(BaseActivity.EXTRA_ITEM_SELECTED_POSITION, position);
         startActivity(intent);
     }
 }

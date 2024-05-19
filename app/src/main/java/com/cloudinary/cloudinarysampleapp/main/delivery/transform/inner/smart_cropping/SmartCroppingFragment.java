@@ -1,4 +1,4 @@
-package com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner;
+package com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.smart_cropping;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

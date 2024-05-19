@@ -118,4 +118,9 @@ public class TransformationAdapter extends RecyclerView.Adapter<TransformationAd
             }
         }
     }
+
+    public void setSelectedItemPosition(int position) {
+        selectedItemPosition = position;
+    }
+
 }

@@ -3,6 +3,7 @@ package com.cloudinary.cloudinarysampleapp.main.delivery.base;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -22,10 +23,12 @@ import com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.Transfor
 public class BaseActivity extends AppCompatActivity {
 
     public static final String EXTRA_ACTIVITY_TYPE = "activity_type";
+    public static final String EXTRA_ITEM_SELECTED_POSITION = "selected_item_position";
     ActivityBaseBinding binding;
     HeadingBinding headingBinding;
 
     BaseActivityType type = BaseActivityType.Optimization;
+    private int selectedItemPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +37,13 @@ public class BaseActivity extends AppCompatActivity {
         int typeOrdinal = getIntent().getIntExtra(EXTRA_ACTIVITY_TYPE, BaseActivityType.Optimization.ordinal());
         type = BaseActivityType.values()[typeOrdinal];
 
+        selectedItemPosition = getIntent().getIntExtra(EXTRA_ITEM_SELECTED_POSITION, 0);
+
         binding = ActivityBaseBinding.inflate(getLayoutInflater());
         headingBinding = binding.baseHeading;
         setContentView(binding.getRoot());
         setHeadingTitle();
+        setBackButton();
         setFragmentView();
     }
 
@@ -47,7 +53,9 @@ public class BaseActivity extends AppCompatActivity {
                 setFragment(new OptimizationFragment());
                 break;
             case Transformation:
-                setFragment(new TransformationFragment());
+                TransformationFragment fragment = new TransformationFragment();
+                fragment.setPosition(selectedItemPosition);
+                setFragment(fragment);
                 break;
         }
     }
@@ -62,6 +70,16 @@ public class BaseActivity extends AppCompatActivity {
                 headingTitle.setText(StringHelper.captialLetter(getString(R.string.transformation)));
                 break;
         }
+    }
+
+    private void setBackButton() {
+        ImageButton button = binding.baseHeading.headerBackButton;
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void setFragment(Fragment fragment) {
