@@ -8,4 +8,5 @@
     <color name="main_background">#1c1f26</color>
     <color name="size_red">#FF5959</color>
     <color name="size_green">#B2FCAE</color>
+    <color name="transformation_gray">#8A8C91</color>
 </resources>

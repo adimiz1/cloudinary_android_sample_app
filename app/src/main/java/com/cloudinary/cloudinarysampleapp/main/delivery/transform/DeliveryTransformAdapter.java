@@ -46,7 +46,6 @@ public class DeliveryTransformAdapter extends RecyclerView.Adapter<DeliveryTrans
                 itemSelected(holder.getBindingAdapterPosition());
             }
         });
-        // Bind other data to your custom cell views here if needed
     }
 
     private void itemSelected(int position) {

@@ -1,18 +1,16 @@
 package com.cloudinary.cloudinarysampleapp.main.delivery.usecases;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudinary.cloudinarysampleapp.R;
+import com.cloudinary.cloudinarysampleapp.databinding.DeliveryUsecaseCellBinding;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,24 +20,35 @@ public class DeliveryUsecasesAdapter extends RecyclerView.Adapter<DeliveryUsecas
 
         private List<String> dataList;
 
-        private com.cloudinary.cloudinarysampleapp.databinding.DeliveryUsecaseCellBinding binding;
+        private DeliveryUsecaseCellBinding binding;
 
-        public DeliveryUsecasesAdapter(Context context) {
+    OnUseCaseItemSelectedListener onTransformationItemSelectedListener;
+
+        public DeliveryUsecasesAdapter(Context context, OnUseCaseItemSelectedListener listener) {
             dataList = new ArrayList<>(Collections.nCopies(4, ""));
+            onTransformationItemSelectedListener = listener;
         }
 
         @NonNull
         @Override
         public DeliveryUseCasesCellViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            this.binding = com.cloudinary.cloudinarysampleapp.databinding.DeliveryUsecaseCellBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-//        View view = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.custom_cell_layout, parent, false);
+            this.binding = DeliveryUsecaseCellBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
             return new DeliveryUseCasesCellViewHolder(binding);
         }
 
     @Override
     public void onBindViewHolder(@NonNull DeliveryUseCasesCellViewHolder holder, int position) {
         holder.setTextView(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemSelected(holder.getBindingAdapterPosition());
+            }
+        });
+    }
+
+    private void itemSelected(int position) {
+        onTransformationItemSelectedListener.onUseCaseItemSelected(position);
     }
 
         @Override
@@ -50,7 +59,7 @@ public class DeliveryUsecasesAdapter extends RecyclerView.Adapter<DeliveryUsecas
         public static class DeliveryUseCasesCellViewHolder extends RecyclerView.ViewHolder {
 
             TextView textView;
-            public DeliveryUseCasesCellViewHolder(@NonNull com.cloudinary.cloudinarysampleapp.databinding.DeliveryUsecaseCellBinding binding) {
+            public DeliveryUseCasesCellViewHolder(@NonNull DeliveryUsecaseCellBinding binding) {
                 super(binding.getRoot());
                 textView = binding.deliveryUsecasesCellTextview;
             }

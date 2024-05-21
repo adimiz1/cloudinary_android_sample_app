@@ -50,7 +50,7 @@
     <string name="optimization">Optimization</string>
     <string name="optimization_subtitle">Improve web and app performance</string>
     <string name="transformation">Transformation</string>
-    <string name="usecases">Usecases</string>
+    <string name="usecases">Use Cases</string>
     <string name="auto_cropping">Auto Cropping\n</string>
     <string name="overlay">Overlay\n</string>
     <string name="background_normalization">Background Normalization</string>
@@ -61,4 +61,10 @@
     <string name="localization_and_branding"><![CDATA[Localization & Branding]]></string>
     <string name="background_normalizing">Background Normalizing</string>
     <string name="color_alternation">Color Alternation</string>
+    <string name="normalize_asset_sizing">Normalize Asset Sizing</string>
+    <string name="conditional_product_badging">Conditional Product Badging</string>
+    <string name="adapt_to_screen_size">Adapt to Screen Size</string>
+    <string name="ai_generated_backgrounds">AI Generated Backgrounds</string>
+    <string name="before">Before</string>
+    <string name="after">After</string>
 </resources>

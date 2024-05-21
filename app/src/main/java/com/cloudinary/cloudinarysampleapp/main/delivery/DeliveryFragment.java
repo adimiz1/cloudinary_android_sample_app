@@ -19,9 +19,10 @@ import com.cloudinary.cloudinarysampleapp.main.delivery.base.BaseActivityType;
 import com.cloudinary.cloudinarysampleapp.main.delivery.transform.DeliveryTransformAdapter;
 import com.cloudinary.cloudinarysampleapp.main.delivery.transform.OnTransformationItemSelectedListener;
 import com.cloudinary.cloudinarysampleapp.main.delivery.usecases.DeliveryUsecasesAdapter;
+import com.cloudinary.cloudinarysampleapp.main.delivery.usecases.OnUseCaseItemSelectedListener;
 import com.cloudinary.cloudinarysampleapp.main.delivery.usecases.RecyclerViewItemDecoration;
 
-public class DeliveryFragment extends Fragment implements OnTransformationItemSelectedListener {
+public class DeliveryFragment extends Fragment implements OnTransformationItemSelectedListener, OnUseCaseItemSelectedListener {
 
     DeliveryFragementBinding binding;
 
@@ -66,7 +67,7 @@ public class DeliveryFragment extends Fragment implements OnTransformationItemSe
         RecyclerView recyclerView = binding.deliveryUsecasesRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        DeliveryUsecasesAdapter adapter = new DeliveryUsecasesAdapter(getActivity());
+        DeliveryUsecasesAdapter adapter = new DeliveryUsecasesAdapter(getActivity(), this);
         recyclerView.setAdapter(adapter);
 
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.item_spacing); // Adjust the spacing as needed
@@ -77,6 +78,14 @@ public class DeliveryFragment extends Fragment implements OnTransformationItemSe
     public void onTransformationItemSelected(int position) {
         Intent intent = new Intent(getActivity(), BaseActivity.class);
         intent.putExtra(BaseActivity.EXTRA_ACTIVITY_TYPE, BaseActivityType.Transformation.ordinal());
+        intent.putExtra(BaseActivity.EXTRA_ITEM_SELECTED_POSITION, position);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onUseCaseItemSelected(int position) {
+        Intent intent = new Intent(getActivity(), BaseActivity.class);
+        intent.putExtra(BaseActivity.EXTRA_ACTIVITY_TYPE, BaseActivityType.UseCases.ordinal());
         intent.putExtra(BaseActivity.EXTRA_ITEM_SELECTED_POSITION, position);
         startActivity(intent);
     }

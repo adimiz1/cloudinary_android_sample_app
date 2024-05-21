@@ -19,6 +19,7 @@ import com.cloudinary.cloudinarysampleapp.databinding.HeadingBinding;
 import com.cloudinary.cloudinarysampleapp.helpers.StringHelper;
 import com.cloudinary.cloudinarysampleapp.main.delivery.optimization.OptimizationFragment;
 import com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.TransformationFragment;
+import com.cloudinary.cloudinarysampleapp.main.delivery.usecases.inner.UseCasesFragment;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -53,9 +54,14 @@ public class BaseActivity extends AppCompatActivity {
                 setFragment(new OptimizationFragment());
                 break;
             case Transformation:
-                TransformationFragment fragment = new TransformationFragment();
-                fragment.setPosition(selectedItemPosition);
-                setFragment(fragment);
+                TransformationFragment transformationFragment = new TransformationFragment();
+                transformationFragment.setPosition(selectedItemPosition);
+                setFragment(transformationFragment);
+                break;
+            case UseCases:
+                UseCasesFragment useCasesFragment = new UseCasesFragment();
+                useCasesFragment.setPosition(selectedItemPosition);
+                setFragment(useCasesFragment);
                 break;
         }
     }
@@ -69,11 +75,14 @@ public class BaseActivity extends AppCompatActivity {
             case Transformation:
                 headingTitle.setText(StringHelper.captialLetter(getString(R.string.transformation)));
                 break;
+            case UseCases:
+                headingTitle.setText(getString(R.string.usecases));
+                break;
         }
     }
 
     private void setBackButton() {
-        ImageButton button = binding.baseHeading.headerBackButton;
+        ImageButton button = headingBinding.headerBackButton;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
