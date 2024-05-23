@@ -8,6 +8,6 @@
     android:fitsSystemWindows="true"
     tools:context=".main.MainActivity">
 
-    <include layout="@layout/content_main" />
+    <include android:id="@+id/content_main" layout="@layout/content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
