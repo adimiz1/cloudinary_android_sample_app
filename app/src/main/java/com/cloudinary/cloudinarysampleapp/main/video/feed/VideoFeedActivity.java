@@ -1,15 +1,13 @@
 package com.cloudinary.cloudinarysampleapp.main.video.feed;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.cloudinary.Transformation;
-import com.cloudinary.android.MediaManager;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +22,16 @@ public class VideoFeedActivity extends AppCompatActivity {
         binding = com.cloudinary.cloudinarysampleapp.databinding.ActivityVideoFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setViewPager();
+        setBackButton();
+    }
+
+    private void setBackButton() {
+        binding.videoFeedBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void setViewPager() {

@@ -33,7 +33,8 @@
         </activity>
         <activity android:name=".main.delivery.base.BaseActivity">
         </activity>
-        <activity android:name=".main.video.feed.VideoFeedActivity">
+        <activity android:name=".main.video.feed.VideoFeedActivity"
+            android:theme="@style/FullScreen">
         </activity>
     </application>
 
