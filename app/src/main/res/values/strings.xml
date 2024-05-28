@@ -38,4 +38,17 @@
     <string name="discover">Discover</string>
     <string name="inbox">Inbox</string>
     <string name="me">Me</string>
+    <string name="upload_widget">Upload Widget</string>
+    <string name="streamline_your_media">Streamline your media uploads seamlessly</string>
+    <string name="image_widget">Image Widget</string>
+    <string name="add_images_effortlessly">Add images effortlessly from your device, external sources, or Cloudinary assets to enhance your project.</string>
+    <string name="glide">Glide</string>
+    <string name="picasso">Picasso</string>
+    <string name="fresco">Fresco</string>
+    <string name="hi_developers">Hi,\nDevelopers</string>
+    <string name="close">Close</string>
+    <string name="insert_your_cloud_name">Insert your cloud name and explore the power of Cloudinary.</string>
+    <string name="get_started">Get Started</string>
+    <string name="cant_find_your_cloud_name">Can\'t find your cloud name?</string>
+    <string name="open_upload_widget">Open Upload Widget</string>
 </resources>

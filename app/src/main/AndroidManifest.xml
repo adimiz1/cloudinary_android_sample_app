@@ -36,6 +36,8 @@
         <activity android:name=".main.video.feed.VideoFeedActivity"
             android:theme="@style/FullScreen">
         </activity>
+        <activity android:name=".main.upload.NoCloudActivity"/>
+        <activity android:name=".main.upload.WebViewActivity"/>
     </application>
 
 </manifest>

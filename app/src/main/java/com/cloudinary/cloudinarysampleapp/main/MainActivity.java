@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cloudinary.cloudinarysampleapp.databinding.ActivityMainBinding;
 import com.cloudinary.cloudinarysampleapp.main.delivery.optimization.OptimizationFragment;
 import com.cloudinary.cloudinarysampleapp.main.video.VideoFragment;
+import com.cloudinary.cloudinarysampleapp.main.widgets.WidgetsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if(id == R.id.navigation_upload) {
 
                 } else if(id == R.id.navigation_widgets) {
+                    setFragment(new WidgetsFragment());
+                    return true;
 
                 } else if(id == R.id.navigation_video) {
                     setFragment(new VideoFragment());

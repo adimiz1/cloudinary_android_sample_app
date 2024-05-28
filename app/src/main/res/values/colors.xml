@@ -9,4 +9,5 @@
     <color name="size_red">#FF5959</color>
     <color name="size_green">#B2FCAE</color>
     <color name="transformation_gray">#8A8C91</color>
+    <color name="button_primary">#3448C5</color>
 </resources>

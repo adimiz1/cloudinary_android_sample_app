@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation ("com.facebook.fresco:fresco:2.6.0")
     implementation ("androidx.media3:media3-ui:1.1.1")
     implementation ("androidx.media3:media3-exoplayer:1.1.1")
     implementation ("com.github.bumptech.glide:glide:4.16.0")

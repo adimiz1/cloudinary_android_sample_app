@@ -1,5 +1,6 @@
 package com.cloudinary.cloudinarysampleapp.main.delivery.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -20,6 +21,11 @@ import com.cloudinary.cloudinarysampleapp.helpers.StringHelper;
 import com.cloudinary.cloudinarysampleapp.main.delivery.optimization.OptimizationFragment;
 import com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.TransformationFragment;
 import com.cloudinary.cloudinarysampleapp.main.delivery.usecases.inner.UseCasesFragment;
+import com.cloudinary.cloudinarysampleapp.main.upload.UploadChoiceFragment;
+import com.cloudinary.cloudinarysampleapp.main.widgets.image_widget.ImageWidgetFragment;
+import com.cloudinary.cloudinarysampleapp.main.widgets.upload_widget.UploadWidgetFragment;
+
+import java.util.List;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -63,6 +69,12 @@ public class BaseActivity extends AppCompatActivity {
                 useCasesFragment.setPosition(selectedItemPosition);
                 setFragment(useCasesFragment);
                 break;
+            case ImageWidget:
+                setFragment(new ImageWidgetFragment());
+                break;
+            case UploadWidget:
+                setFragment(new UploadChoiceFragment());
+                break;
         }
     }
 
@@ -77,6 +89,12 @@ public class BaseActivity extends AppCompatActivity {
                 break;
             case UseCases:
                 headingTitle.setText(getString(R.string.usecases));
+                break;
+            case ImageWidget:
+                headingTitle.setText(getString(R.string.image_widget));
+                break;
+            case UploadWidget:
+                headingTitle.setText(getString(R.string.upload_widget));
                 break;
         }
     }
@@ -96,6 +114,18 @@ public class BaseActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(binding.baseFragemntContainer.getId(), fragment);
         fragmentTransaction.commit();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == UploadWidgetFragment.UPLOAD_WIDGET_REQUEST_CODE) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            List<Fragment> fragments = fragmentManager.getFragments();
+            if (fragments.get(1) instanceof UploadWidgetFragment) {
+                assert data != null;
+                ((UploadWidgetFragment) fragments.get(1)).handleResultWidgetResult(data);
+            }
+        }
     }
 }
 
