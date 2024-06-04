@@ -39,13 +39,15 @@ public class BackgroundNormalizingFragment extends Fragment {
 
     private void setRevealImageView() {
         RevealImageView revealImageView = binding.localizationRevealImageview;
-        Glide.with(revealImageView).asBitmap().load(MediaManager.get().url().transformation(new Transformation().effect("background_removal")).generate("Demo%20app%20content/layers-fashion-2_1_xsfbvm")).into(new SimpleTarget<Bitmap>() {
+//        String url = MediaManager.get().url().transformation(new Transformation().effect("background_removal")).generate("Demo%20app%20content/layers-fashion-2_1_xsfbvm");
+        Glide.with(revealImageView).asBitmap().load("https://res.cloudinary.com/mobiledemoapp/image/upload/e_background_removal/v1/Demo%20app%20content/layers-fashion-2_1_xsfbvm?_a=DAFAMiAiAiA0").into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                 revealImageView.setLeftImage(resource);
             }
         });
-        Glide.with(revealImageView).asBitmap().load(MediaManager.get().url().generate("Demo%20app%20content/layers-fashion-2_1_xsfbvm")).into(new SimpleTarget<Bitmap>() {
+//        String url = MediaManager.get().url().generate("Demo%20app%20content/layers-fashion-2_1_xsfbvm");
+        Glide.with(revealImageView).asBitmap().load("https://res.cloudinary.com/mobiledemoapp/image/upload/v1/Demo%20app%20content/layers-fashion-2_1_xsfbvm?_a=DAFAMiAiAiA0").into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                 revealImageView.setRightImage(resource);

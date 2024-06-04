@@ -49,18 +49,19 @@ public class ImageWidgetFragment extends Fragment {
     private void setGlide() {
         MediaManager.get().setDownloadRequestBuilderFactory(new GlideDownloadRequestBuilderFactory());
         ImageView imageView = binding.imageWidgetGlideImageview;
-        MediaManager.get().download(requireActivity()).load(MediaManager.get().url().generate("Demo%20app%20content/Frame_871_ao5o4r")).into(imageView);
+//        String url = MediaManager.get().url().generate("Demo%20app%20content/Frame_871_ao5o4r");
+        MediaManager.get().download(requireActivity()).load("https://res.cloudinary.com/mobiledemoapp/image/upload/v1/Demo%20app%20content/Frame_871_ao5o4r?_a=DAFAMiAiAiA0").into(imageView);
     }
 
     private void setPicasso() {
         MediaManager.get().setDownloadRequestBuilderFactory(new PicassoDownloadRequestBuilderFactory());
         ImageView imageView = binding.imageWidgetPicassoImageview;
-        MediaManager.get().download(requireActivity()).load(MediaManager.get().url().generate("Demo%20app%20content/Frame_871_ao5o4r")).into(imageView);
+        MediaManager.get().download(requireActivity()).load("https://res.cloudinary.com/mobiledemoapp/image/upload/v1/Demo%20app%20content/Frame_871_ao5o4r?_a=DAFAMiAiAiA0").into(imageView);
     }
 
     private void setFresco() {
         MediaManager.get().setDownloadRequestBuilderFactory(new FrescoDownloadRequestBuilderFactory());
         SimpleDraweeView imageView = binding.imageWidgetFrescoImageview;
-        MediaManager.get().download(requireActivity()).load(MediaManager.get().url().generate("Demo%20app%20content/Frame_871_ao5o4r")).into(imageView);
+        MediaManager.get().download(requireActivity()).load("https://res.cloudinary.com/mobiledemoapp/image/upload/v1/Demo%20app%20content/Frame_871_ao5o4r?_a=DAFAMiAiAiA0").into(imageView);
     }
 }

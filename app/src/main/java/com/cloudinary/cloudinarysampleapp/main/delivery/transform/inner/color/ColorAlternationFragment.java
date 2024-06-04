@@ -39,13 +39,15 @@ public class ColorAlternationFragment extends Fragment {
 
     private void setRevealImageView() {
         RevealImageView revealImageView = binding.localizationRevealImageview;
-        Glide.with(revealImageView).asBitmap().load(MediaManager.get().url().transformation(new Transformation().effect("gen_recolor:prompt_t-shirt;to-color_8fbc8f")).generate("Demo%20app%20content/recolor-tshirt-5_omapls")).into(new SimpleTarget<Bitmap>() {
+//        String url = MediaManager.get().url().transformation(new Transformation().effect("gen_recolor:prompt_t-shirt;to-color_8fbc8f")).generate("Demo%20app%20content/recolor-tshirt-5_omapls");
+        Glide.with(revealImageView).asBitmap().load("https://res.cloudinary.com/mobiledemoapp/image/upload/e_gen_recolor:prompt_t-shirt;to-color_8fbc8f/v1/Demo%20app%20content/recolor-tshirt-5_omapls?_a=DAFAMiAiAiA0").into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                 revealImageView.setLeftImage(resource);
             }
         });
-        Glide.with(revealImageView).asBitmap().load(MediaManager.get().url().generate("Demo%20app%20content/recolor-tshirt-5_omapls")).into(new SimpleTarget<Bitmap>() {
+//        String url = MediaManager.get().url().generate("Demo%20app%20content/recolor-tshirt-5_omapls");
+        Glide.with(revealImageView).asBitmap().load("https://res.cloudinary.com/mobiledemoapp/image/upload/v1/Demo%20app%20content/recolor-tshirt-5_omapls?_a=DAFAMiAiAiA0").into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                 revealImageView.setRightImage(resource);

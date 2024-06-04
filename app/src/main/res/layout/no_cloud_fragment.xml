@@ -20,6 +20,7 @@
             android:textColor="@color/white"
             android:background="@android:color/transparent"
             android:layout_margin="16dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

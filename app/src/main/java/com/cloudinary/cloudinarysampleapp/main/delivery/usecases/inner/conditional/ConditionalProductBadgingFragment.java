@@ -37,13 +37,16 @@ public class ConditionalProductBadgingFragment extends Fragment {
         ImageView topTopLeft = binding.imageviewTopLeft;
         ImageView topTopRight = binding.imageviewTopRight;
         ImageView bottom = binding.imageviewBottom;
-        Glide.with(topTopLeft).load(MediaManager.get().url().generate("Group_15_jda5ms")).into(topTopLeft);
-        Glide.with(topTopRight).load(MediaManager.get().url().generate("tshirt4_1_si0swc")).into(topTopRight);
-        Glide.with(bottom).load(MediaManager.get().url().transformation(new Transformation()
-                .overlay("Group_15_jda5ms")
-                .gravity("north_west")
-                .width(0.4)
-                .x(10)
-                .y(10)).generate("tshirt4_1_si0swc")).into(bottom);
+//        String url = MediaManager.get().url().generate("Group_15_jda5ms");
+        Glide.with(topTopLeft).load("https://res.cloudinary.com/mobiledemoapp/image/upload/Group_15_jda5ms?_a=DAFAMiAiAiA0").into(topTopLeft);
+//        String url = MediaManager.get().url().generate("tshirt4_1_si0swc");
+        Glide.with(topTopRight).load("https://res.cloudinary.com/mobiledemoapp/image/upload/tshirt4_1_si0swc?_a=DAFAMiAiAiA0").into(topTopRight);
+//        String url = MediaManager.get().url().transformation(new Transformation()
+//                .overlay("Group_15_jda5ms")
+//                .gravity("north_west")
+//                .width(0.4)
+//                .x(10)
+//                .y(10)).generate("tshirt4_1_si0swc");
+        Glide.with(bottom).load("https://res.cloudinary.com/mobiledemoapp/image/upload/g_north_west,l_Group_15_jda5ms,w_0.4,x_10,y_10/tshirt4_1_si0swc?_a=DAFAMiAiAiA0").into(bottom);
     }
 }

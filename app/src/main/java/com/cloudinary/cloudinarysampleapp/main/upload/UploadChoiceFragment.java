@@ -39,13 +39,6 @@ public class UploadChoiceFragment extends Fragment {
         selectView(cloudName);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        String cloudName = getCloudName();
-//        selectView(cloudName);
-    }
-
     private String getCloudName() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", MODE_PRIVATE);
         return sharedPreferences.getString("cloud_name", null); // "" is the default value if cloud_name is not found
@@ -72,11 +65,5 @@ public class UploadChoiceFragment extends Fragment {
     private void openNoCloudFragment() {
         Intent intent = new Intent(getActivity(), NoCloudActivity.class);
         startActivity(intent);
-//        Fragment fragment = new NoCloudFragment();
-//
-//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(binding.uploadChoiceFragmentContainer.getId(), fragment);
-//        fragmentTransaction.commit();
     }
 }

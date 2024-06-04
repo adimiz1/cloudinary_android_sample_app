@@ -37,11 +37,17 @@ public class NormalizeAssetSizingFragment extends Fragment {
         ImageView bottomLeft = binding.bottomImageviewLeft;
         ImageView bottomMiddle = binding.bottomImageviewCenter;
         ImageView bottomRight = binding.bottomImageviewRight;
-        Glide.with(topTopLeft).load(MediaManager.get().url().generate("pexels-aditya-aiyar-1407354_tiw4bv")).into(topTopLeft);
-        Glide.with(topTopRight).load(MediaManager.get().url().generate("pexels-mnz-1670766_n9hfoi")).into(topTopRight);
-        Glide.with(topBottomRight).load(MediaManager.get().url().generate("pexels-wendy-wei-12511453_b4shho")).into(topBottomRight);
-        Glide.with(bottomLeft).load(MediaManager.get().url().generate("Rectangle_1434_fcnobi")).into(bottomLeft);
-        Glide.with(bottomMiddle).load(MediaManager.get().url().generate("Rectangle_1435_mwtszu")).into(bottomMiddle);
-        Glide.with(bottomRight).load(MediaManager.get().url().generate("Rectangle_1436_kdsfld")).into(bottomRight);
+//        String url = MediaManager.get().url().generate("pexels-aditya-aiyar-1407354_tiw4bv");
+        Glide.with(topTopLeft).load("https://res.cloudinary.com/mobiledemoapp/image/upload/pexels-aditya-aiyar-1407354_tiw4bv?_a=DAFAMiAiAiA0").into(topTopLeft);
+//        String url = MediaManager.get().url().generate("pexels-mnz-1670766_n9hfoi");
+        Glide.with(topTopRight).load("https://res.cloudinary.com/mobiledemoapp/image/upload/pexels-mnz-1670766_n9hfoi?_a=DAFAMiAiAiA0").into(topTopRight);
+//        String url = MediaManager.get().url().generate("pexels-wendy-wei-12511453_b4shho");
+        Glide.with(topBottomRight).load("https://res.cloudinary.com/mobiledemoapp/image/upload/pexels-wendy-wei-12511453_b4shho?_a=DAFAMiAiAiA0").into(topBottomRight);
+//        String url = MediaManager.get().url().generate("Rectangle_1434_fcnobi");
+        Glide.with(bottomLeft).load("https://res.cloudinary.com/mobiledemoapp/image/upload/Rectangle_1434_fcnobi?_a=DAFAMiAiAiA0").into(bottomLeft);
+//        String url = MediaManager.get().url().generate("Rectangle_1435_mwtszu");
+        Glide.with(bottomMiddle).load("https://res.cloudinary.com/mobiledemoapp/image/upload/Rectangle_1435_mwtszu?_a=DAFAMiAiAiA0").into(bottomMiddle);
+//        String url = MediaManager.get().url().generate("Rectangle_1436_kdsfld");
+        Glide.with(bottomRight).load("https://res.cloudinary.com/mobiledemoapp/image/upload/Rectangle_1436_kdsfld?_a=DAFAMiAiAiA0").into(bottomRight);
     }
 }

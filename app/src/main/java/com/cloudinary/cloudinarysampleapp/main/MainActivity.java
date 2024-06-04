@@ -1,5 +1,7 @@
 package com.cloudinary.cloudinarysampleapp.main;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.cloudinary.cloudinarysampleapp.R;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudinary.cloudinarysampleapp.databinding.ActivityMainBinding;
 import com.cloudinary.cloudinarysampleapp.main.delivery.optimization.OptimizationFragment;
+import com.cloudinary.cloudinarysampleapp.main.upload.NoCloudActivity;
 import com.cloudinary.cloudinarysampleapp.main.video.VideoFragment;
 import com.cloudinary.cloudinarysampleapp.main.widgets.WidgetsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,6 +39,19 @@ public class MainActivity extends AppCompatActivity {
         DeliveryFragment deliveryFragment = new DeliveryFragment();
         setFragment(deliveryFragment);
         setBottomNavigationView();
+        checkForActiveCloud();
+    }
+
+    private void checkForActiveCloud() {
+        if (getCloudName() == null) {
+            Intent intent = new Intent(this, NoCloudActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private String getCloudName() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return sharedPreferences.getString("cloud_name", null); // "" is the default value if cloud_name is not found
     }
 
     private void setFragment(Fragment fragment) {
