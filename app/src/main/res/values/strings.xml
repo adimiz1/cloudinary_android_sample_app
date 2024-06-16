@@ -51,4 +51,13 @@
     <string name="get_started">Get Started</string>
     <string name="cant_find_your_cloud_name">Can\'t find your cloud name?</string>
     <string name="open_upload_widget">Open Upload Widget</string>
+    <string name="everything_starts">Everything starts when you upload a file</string>
+    <string name="upload_large">Upload large file</string>
+    <string name="upload_large_subtitle">Share your big files up to 100GB</string>
+    <string name="fetch_upload">Fetch Upload</string>
+    <string name="fetch_upload_subtitle">Upload an image from any URL to your cloud</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="pre_process">Pre Process Image</string>
+    <string name="modify_your_image">Modify your image before upload</string>
+
 </resources>

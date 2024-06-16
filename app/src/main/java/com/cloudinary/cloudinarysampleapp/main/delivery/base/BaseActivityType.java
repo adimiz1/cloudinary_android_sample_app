@@ -6,5 +6,8 @@ public enum BaseActivityType {
     UseCases,
     ImageWidget,
     UploadWidget,
+    Upload,
+    PreProcess,
+    FetchUpload,
 
 }

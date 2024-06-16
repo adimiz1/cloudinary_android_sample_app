@@ -35,6 +35,10 @@ public class OptimizationFragment extends Fragment {
 
     OptimizationFragmentBinding binding;
 
+    OptimizationType type = OptimizationType.Optimization;
+
+    String publicId = "Demo%20app%20content/optimization_original";
+
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -58,13 +62,17 @@ public class OptimizationFragment extends Fragment {
     private void setOptimizedImageView() {
         ImageView optimizedImageView = binding.optimizationOptimizedImageview;
 
-        String url = MediaManager.get().url().transformation(new Transformation().crop("scale").width(1000).fetchFormat("avif").quality("auto").dpr("auto")).generate("Demo%20app%20content/optimization_optimized");
+        String url = null;
+        if (type == OptimizationType.Optimization) {
+            url = MediaManager.get().url().transformation(new Transformation().crop("scale").width(800).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
+        }
+        if(type == OptimizationType.FetchUplaod) {
+            url = MediaManager.get().url().type("fetch").transformation(new Transformation().crop("scale").width(800).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
+        }
 
         Glide.with(optimizedImageView)
                 .asBitmap()
-                .load(new CloudinaryRequest.Builder("Demo%20app%20content/optimization_optimized")
-                        .transformation(new Transformation().crop("scale").width(500).fetchFormat("avif").quality("auto").dpr("auto"))
-                        .build())
+                .load(url)
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap bitmap, Transition<? super Bitmap> transition) {
@@ -96,10 +104,17 @@ public class OptimizationFragment extends Fragment {
     private void setOriginalImageView() {
         ImageView originalImageView = binding.optimizationOriginalImageview;
 
+        String url = null;
+        if (type == OptimizationType.Optimization) {
+            url = MediaManager.get().url().transformation(new Transformation().crop("scale").width(1000).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
+        }
+        if(type == OptimizationType.FetchUplaod) {
+            url = MediaManager.get().url().type("fetch").transformation(new Transformation().crop("scale").width(1000).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
+        }
+
         Glide.with(originalImageView)
                 .asBitmap()
-                .load(new CloudinaryRequest.Builder("Demo%20app%20content/optimization_original")
-                        .build())
+                .load(url)
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap bitmap, Transition<? super Bitmap> transition) {
@@ -157,5 +172,13 @@ public class OptimizationFragment extends Fragment {
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         return bitmap;
+    }
+
+    public void setPublicId(String publicId) {
+        this.publicId = publicId;
+    }
+
+    public void setType(OptimizationType optimizationType) {
+        this.type = optimizationType;
     }
 }

@@ -19,9 +19,12 @@ import com.cloudinary.cloudinarysampleapp.databinding.ActivityMainBinding;
 import com.cloudinary.cloudinarysampleapp.databinding.HeadingBinding;
 import com.cloudinary.cloudinarysampleapp.helpers.StringHelper;
 import com.cloudinary.cloudinarysampleapp.main.delivery.optimization.OptimizationFragment;
+import com.cloudinary.cloudinarysampleapp.main.delivery.optimization.OptimizationType;
 import com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.TransformationFragment;
 import com.cloudinary.cloudinarysampleapp.main.delivery.usecases.inner.UseCasesFragment;
 import com.cloudinary.cloudinarysampleapp.main.upload.UploadChoiceFragment;
+import com.cloudinary.cloudinarysampleapp.main.upload.single_upload.SingleUploadFragment;
+import com.cloudinary.cloudinarysampleapp.main.upload.single_upload.UploadViewType;
 import com.cloudinary.cloudinarysampleapp.main.widgets.image_widget.ImageWidgetFragment;
 import com.cloudinary.cloudinarysampleapp.main.widgets.upload_widget.UploadWidgetFragment;
 
@@ -69,6 +72,20 @@ public class BaseActivity extends AppCompatActivity {
                 useCasesFragment.setPosition(selectedItemPosition);
                 setFragment(useCasesFragment);
                 break;
+            case Upload:
+                setFragment(new SingleUploadFragment());
+                break;
+            case PreProcess:
+                SingleUploadFragment singleUploadFragment = new SingleUploadFragment();
+                singleUploadFragment.setType(UploadViewType.PreProcess);
+                setFragment(singleUploadFragment);
+                break;
+            case FetchUpload:
+                OptimizationFragment optimizationFragment = new OptimizationFragment();
+                optimizationFragment.setType(OptimizationType.FetchUplaod);
+                optimizationFragment.setPublicId("https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg/1600px-Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg?20150402075721");
+                setFragment(optimizationFragment);
+                break;
             case ImageWidget:
                 setFragment(new ImageWidgetFragment());
                 break;
@@ -89,6 +106,15 @@ public class BaseActivity extends AppCompatActivity {
                 break;
             case UseCases:
                 headingTitle.setText(getString(R.string.usecases));
+                break;
+            case Upload:
+                headingTitle.setText(getString(R.string.upload));
+                break;
+            case PreProcess:
+                headingTitle.setText(getString(R.string.pre_process));
+                break;
+            case FetchUpload:
+                headingTitle.setText(getString(R.string.fetch_upload));
                 break;
             case ImageWidget:
                 headingTitle.setText(getString(R.string.image_widget));

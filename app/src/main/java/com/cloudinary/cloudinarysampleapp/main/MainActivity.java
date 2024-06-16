@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cloudinary.cloudinarysampleapp.databinding.ActivityMainBinding;
 import com.cloudinary.cloudinarysampleapp.main.delivery.optimization.OptimizationFragment;
 import com.cloudinary.cloudinarysampleapp.main.upload.NoCloudActivity;
+import com.cloudinary.cloudinarysampleapp.main.upload.UploadFragment;
 import com.cloudinary.cloudinarysampleapp.main.video.VideoFragment;
 import com.cloudinary.cloudinarysampleapp.main.widgets.WidgetsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     setFragment(new DeliveryFragment());
                     return true;
                 } else if(id == R.id.navigation_upload) {
+                    setFragment(new UploadFragment());
+                    return true;
 
                 } else if(id == R.id.navigation_widgets) {
                     setFragment(new WidgetsFragment());

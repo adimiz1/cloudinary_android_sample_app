@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.cloudinary.cloudinarysampleapp.databinding.ActivityBaseBinding;
 import com.cloudinary.cloudinarysampleapp.databinding.NoCloudFragmentBinding;
+import com.cloudinary.cloudinarysampleapp.helpers.CloudinaryHelper;
 
 public class NoCloudActivity extends AppCompatActivity {
 
@@ -48,7 +49,8 @@ public class NoCloudActivity extends AppCompatActivity {
         binding.getStartedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveCloudName(binding.hiDevelopersEdittext.getText().toString());
+                CloudinaryHelper.setMediaManager(getBaseContext(), binding.hiDevelopersEdittext.getText().toString());
+//                saveCloudName(binding.hiDevelopersEdittext.getText().toString());
                 finish();
             }
         });
