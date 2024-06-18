@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.cloudinary.cloudinarysampleapp.R;
+import com.cloudinary.cloudinarysampleapp.helpers.CloudinaryHelper;
 import com.cloudinary.cloudinarysampleapp.main.delivery.DeliveryFragment;
 
 import androidx.annotation.NonNull;
@@ -44,9 +45,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkForActiveCloud() {
-        if (getCloudName() == null) {
+        String cloudName = getCloudName();
+        if (cloudName == null) {
             Intent intent = new Intent(this, NoCloudActivity.class);
             startActivity(intent);
+        } else {
+            CloudinaryHelper.setMediaManager(getBaseContext(), cloudName);
         }
     }
 

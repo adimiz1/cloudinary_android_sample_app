@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudinary.android.MediaManager;
@@ -33,13 +32,9 @@ import com.cloudinary.android.preprocess.Limit;
 import com.cloudinary.cloudinarysampleapp.CloudinarySampleApplication;
 import com.cloudinary.cloudinarysampleapp.R;
 import com.cloudinary.cloudinarysampleapp.databinding.SingleUploadFragmentBinding;
+import com.cloudinary.cloudinarysampleapp.helpers.Utils;
 import com.cloudinary.cloudinarysampleapp.local_storage.AssetModelEntity;
-import com.cloudinary.cloudinarysampleapp.local_storage.AssetRepository;
 import com.cloudinary.cloudinarysampleapp.local_storage.AssetViewModel;
-import com.cloudinary.cloudinarysampleapp.main.delivery.transform.inner.TransformationAdapter;
-import com.cloudinary.cloudinarysampleapp.main.delivery.usecases.RecyclerViewItemDecoration;
-
-import java.util.ArrayList;
 import java.util.Map;
 
 public class SingleUploadFragment extends Fragment {
@@ -159,7 +154,7 @@ public class SingleUploadFragment extends Fragment {
 
     private void preProcessImage(Uri imageUri) {
         MediaManager.get().upload(imageUri)
-                .unsigned("ios_sample")
+                .unsigned(Utils.UPLOAD_PRESET)
                 .preprocess(new ImagePreprocessChain()
                         .loadWith(new BitmapDecoder(1000, 1000))
                         .addStep(new Limit(1000, 1000))
@@ -196,7 +191,8 @@ public class SingleUploadFragment extends Fragment {
     }
 
     private void uploadImage(Uri imageUri) {
-        MediaManager.get().upload(imageUri).unsigned("ios_sample").callback(new UploadCallback() {
+        showLoadingView();
+        MediaManager.get().upload(imageUri).unsigned(Utils.UPLOAD_PRESET).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {
                 Log.d(CloudinarySampleApplication.APP_NAME, "Upload started");
@@ -212,11 +208,13 @@ public class SingleUploadFragment extends Fragment {
                 Log.d(CloudinarySampleApplication.APP_NAME, "Upload success");
                 saveToLocalStorage(resultData);
                 observeData();
+                hideLoadingView();
             }
 
             @Override
             public void onError(String requestId, ErrorInfo error) {
                 Log.d(CloudinarySampleApplication.APP_NAME, "Upload error");
+                hideLoadingView();
             }
 
             @Override
@@ -224,6 +222,15 @@ public class SingleUploadFragment extends Fragment {
                 Log.d(CloudinarySampleApplication.APP_NAME, "Upload rescheduled");
             }
         }).dispatch();
+    }
+
+    private void showLoadingView() {
+        binding.singleUploadProgressBarContainer.setVisibility(View.VISIBLE);
+        binding.singleUploadProgressBar.animate();
+    }
+
+    private void hideLoadingView() {
+        binding.singleUploadProgressBarContainer.setVisibility(View.GONE);
     }
 
     private void saveToLocalStorage(Map resultData) {

@@ -50,7 +50,7 @@ public class NoCloudActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CloudinaryHelper.setMediaManager(getBaseContext(), binding.hiDevelopersEdittext.getText().toString());
-//                saveCloudName(binding.hiDevelopersEdittext.getText().toString());
+                saveCloudName(binding.hiDevelopersEdittext.getText().toString());
                 finish();
             }
         });

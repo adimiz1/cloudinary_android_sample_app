@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat;
 import com.cloudinary.cloudinarysampleapp.R;
 
 public class Utils {
+
+    public static String UPLOAD_PRESET = "android_sample";
     public static String getImageWidhtAndHeightString(Drawable drawable) {
         Bitmap bitmap;
         if (drawable instanceof BitmapDrawable) {

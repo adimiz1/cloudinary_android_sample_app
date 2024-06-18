@@ -18,6 +18,7 @@ import com.cloudinary.android.callback.UploadCallback;
 import com.cloudinary.android.uploadwidget.UploadWidget;
 import com.cloudinary.cloudinarysampleapp.databinding.UploadChoiceFragmentBinding;
 import com.cloudinary.cloudinarysampleapp.databinding.UploadWidgetFragmentBinding;
+import com.cloudinary.cloudinarysampleapp.helpers.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class UploadWidgetFragment extends Fragment {
     public void handleResultWidgetResult(Intent data) {
         List<UploadWidget.Result> results = data.getParcelableArrayListExtra(UploadWidget.RESULT_EXTRA);
         UploadRequest request = UploadWidget.preprocessResult(getActivity(), Objects.requireNonNull(results).get(0));
-        request.unsigned("ios_sample").callback(new UploadCallback() {
+        request.unsigned(Utils.UPLOAD_PRESET).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {
 
