@@ -18,7 +18,7 @@
             android:id="@+id/optimization_original_imageview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/delivery_optimization"
+            android:src="@drawable/placeholder"
             android:scaleType="centerCrop"/>
 
         <LinearLayout
@@ -97,7 +97,7 @@
             android:id="@+id/optimization_optimized_imageview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/delivery_optimization"
+            android:src="@drawable/placeholder"
             android:scaleType="centerCrop"/>
         <LinearLayout
             android:layout_width="wrap_content"

@@ -17,7 +17,7 @@ import com.cloudinary.cloudinarysampleapp.databinding.ConditionalProductBadgingB
 public class AdaptToScreenSizeFragment extends Fragment {
     AdaptToScreenSizeBinding binding;
 
-    String publicId = "DevApp_Adapt_Video_02_diett8";
+    String url = "";
 
     @Override
     public View onCreateView(
@@ -35,13 +35,13 @@ public class AdaptToScreenSizeFragment extends Fragment {
     }
 
     private void setVideoPlayer() {
-        CldVideoPlayer player = new CldVideoPlayer(this.getContext(), MediaManager.get().url().resourceType("video").generate(publicId));
+        CldVideoPlayer player = new CldVideoPlayer(this.getContext(), url);
         player.getPlayer().setRepeatMode(Player.REPEAT_MODE_ALL);
         binding.playerView.setPlayer(player.getPlayer());
         player.play();
     }
 
-    public void setPublicId(String publicId) {
-        this.publicId = publicId;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

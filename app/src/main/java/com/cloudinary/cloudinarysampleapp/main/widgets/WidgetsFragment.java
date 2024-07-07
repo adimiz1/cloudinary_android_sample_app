@@ -37,12 +37,12 @@ public class WidgetsFragment extends Fragment {
     }
 
     private void setVideoPlayers() {
-        CldVideoPlayer imageWidgetPlayer = new CldVideoPlayer(getActivity(), "DevApp_ImageUpload_02_vpsz7p", null, false);
+        CldVideoPlayer imageWidgetPlayer = new CldVideoPlayer(getActivity(), "https://res.cloudinary.com/mobiledemoapp/video/upload/DevApp_ImageUpload_02_vpsz7p");
         imageWidgetPlayer.getPlayer().setRepeatMode(Player.REPEAT_MODE_ALL);
         binding.widgetsImageWidgetPlayerview.setPlayer(imageWidgetPlayer.getPlayer());
         imageWidgetPlayer.play();
 
-        CldVideoPlayer uploadWidgetPlayer = new CldVideoPlayer(getActivity(), "DevApp_UploadWidget_02_r61cfi", null, false);
+        CldVideoPlayer uploadWidgetPlayer = new CldVideoPlayer(getActivity(), "https://res.cloudinary.com/mobiledemoapp/video/upload/DevApp_UploadWidget_02_r61cfi");
         uploadWidgetPlayer.getPlayer().setRepeatMode(Player.REPEAT_MODE_ALL);
         binding.widgetsUploadWidgetPlayerview.setPlayer(uploadWidgetPlayer.getPlayer());
         uploadWidgetPlayer.play();

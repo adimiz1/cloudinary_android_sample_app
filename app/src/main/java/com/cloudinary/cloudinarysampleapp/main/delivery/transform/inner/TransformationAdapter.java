@@ -85,18 +85,27 @@ public class TransformationAdapter extends RecyclerView.Adapter<TransformationAd
         }
 
         public void setImageView(int position) {
+            String url;
             switch (position) {
                 case 0:
-                    Glide.with(imageView).load(MediaManager.get().url().transformation(new Transformation().crop("thumb")).generate("Demo%20app%20content/content-aware-crop-4-ski_louxkt")).into(imageView);
+//                    url = MediaManager.get().url().transformation(new Transformation().crop("thumb")).generate("Demo%20app%20content/content-aware-crop-4-ski_louxkt");
+                    url = "https://res.cloudinary.com/mobiledemoapp/image/upload/c_thumb/v1/Demo%20app%20content/content-aware-crop-4-ski_louxkt?_a=DAFAMiAiAiA0";
+                    Glide.with(imageView).load(url).into(imageView);
                     break;
                 case 1:
-                    Glide.with(imageView).load(MediaManager.get().url().transformation(new Transformation().crop("thumb")).generate("Demo%20app%20content/layers-fashion-2_1_xsfbvm")).into(imageView);
+//                    url = MediaManager.get().url().transformation(new Transformation().crop("thumb")).generate("Demo%20app%20content/layers-fashion-2_1_xsfbvm");
+                    url = "https://res.cloudinary.com/mobiledemoapp/image/upload/c_thumb/v1/Demo%20app%20content/layers-fashion-2_1_xsfbvm?_a=DAFAMiAiAiA0";
+                    Glide.with(imageView).load(url).into(imageView);
                     break;
                 case 2:
-                    Glide.with(imageView).load(MediaManager.get().url().transformation(new Transformation().crop("thumb")).generate("Demo%20app%20content/bgr-furniture-1_isnptj")).into(imageView);
+//                    url = MediaManager.get().url().transformation(new Transformation().crop("thumb")).generate("Demo%20app%20content/bgr-furniture-1_isnptj");
+                    url = "https://res.cloudinary.com/mobiledemoapp/image/upload/c_thumb/v1/Demo%20app%20content/bgr-furniture-1_isnptj?_a=DAFAMiAiAiA0";
+                    Glide.with(imageView).load(url).into(imageView);
                     break;
                 case 3:
-                    Glide.with(imageView).load(MediaManager.get().url().transformation(new Transformation().crop("thumb")).generate("Demo%20app%20content/recolor-tshirt-5_omapls")).into(imageView);
+//                    url = MediaManager.get().url().transformation(new Transformation().crop("thumb")).generate("Demo%20app%20content/recolor-tshirt-5_omapls");
+                    url = "https://res.cloudinary.com/mobiledemoapp/image/upload/c_thumb/v1/Demo%20app%20content/recolor-tshirt-5_omapls?_a=DAFAMiAiAiA0";
+                    Glide.with(imageView).load(url).into(imageView);
                     break;
             }
         }

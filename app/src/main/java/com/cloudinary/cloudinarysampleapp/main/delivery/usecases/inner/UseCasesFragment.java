@@ -69,10 +69,11 @@ public class UseCasesFragment extends Fragment implements OnUseCaseItemSelectedL
                 break;
             case AdaptToScreenSize:
                 fragment = new AdaptToScreenSizeFragment();
+                ((AdaptToScreenSizeFragment)fragment).setUrl("https://res.cloudinary.com/mobiledemoapp/video/upload/DevApp_Adapt_Video_02_diett8");
                 break;
             case AIGeneratedBackgrounds:
                 fragment = new AdaptToScreenSizeFragment();
-                ((AdaptToScreenSizeFragment) fragment).setPublicId("DevApp_Generative_Fill_01_fneqxw");
+                ((AdaptToScreenSizeFragment)fragment).setUrl("https://res.cloudinary.com/mobiledemoapp/video/upload/DevApp_Generative_Fill_01_fneqxw");
                 break;
         }
         if (fragment != null) {

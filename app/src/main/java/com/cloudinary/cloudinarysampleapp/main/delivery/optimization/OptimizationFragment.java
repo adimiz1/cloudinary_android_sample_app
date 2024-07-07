@@ -25,6 +25,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.cloudinary.Transformation;
 import com.cloudinary.android.CloudinaryRequest;
 import com.cloudinary.android.MediaManager;
+import com.cloudinary.cloudinarysampleapp.R;
 import com.cloudinary.cloudinarysampleapp.databinding.OptimizationFragmentBinding;
 import com.cloudinary.cloudinarysampleapp.helpers.Utils;
 
@@ -64,7 +65,8 @@ public class OptimizationFragment extends Fragment {
 
         String url = null;
         if (type == OptimizationType.Optimization) {
-            url = MediaManager.get().url().transformation(new Transformation().crop("scale").width(800).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
+//            url = MediaManager.get().url().transformation(new Transformation().crop("scale").width(800).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
+            url = "https://res.cloudinary.com/mobiledemoapp/image/upload/c_scale,dpr_auto,f_avif,q_auto,w_800/v1/Demo%20app%20content/optimization_original?_a=DAFAMiAiAiA0";
         }
         if(type == OptimizationType.FetchUplaod) {
             url = MediaManager.get().url().type("fetch").transformation(new Transformation().crop("scale").width(800).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
@@ -73,6 +75,7 @@ public class OptimizationFragment extends Fragment {
         Glide.with(optimizedImageView)
                 .asBitmap()
                 .load(url)
+                .placeholder(R.drawable.placeholder)
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap bitmap, Transition<? super Bitmap> transition) {
@@ -106,7 +109,8 @@ public class OptimizationFragment extends Fragment {
 
         String url = null;
         if (type == OptimizationType.Optimization) {
-            url = MediaManager.get().url().transformation(new Transformation().crop("scale").width(1000).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
+//            url = MediaManager.get().url().transformation(new Transformation().crop("scale").width(1000).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
+            url = "https://res.cloudinary.com/mobiledemoapp/image/upload/c_scale,dpr_auto,f_avif,q_auto,w_1000/v1/Demo%20app%20content/optimization_original?_a=DAFAMiAiAiA0";
         }
         if(type == OptimizationType.FetchUplaod) {
             url = MediaManager.get().url().type("fetch").transformation(new Transformation().crop("scale").width(1000).fetchFormat("avif").quality("auto").dpr("auto")).generate(publicId);
@@ -115,6 +119,7 @@ public class OptimizationFragment extends Fragment {
         Glide.with(originalImageView)
                 .asBitmap()
                 .load(url)
+                .placeholder(R.drawable.placeholder)
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap bitmap, Transition<? super Bitmap> transition) {
